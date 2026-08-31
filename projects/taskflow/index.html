@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="TaskFlow — A modern JavaScript productivity dashboard."
+    >
+
+    <title>TaskFlow | Productivity Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- TaskFlow CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                T
+            </div>
+
+            <div>
+                <strong>
+                    TaskFlow
+                </strong>
+
+                <span>
+                    Productivity
+                </span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-navigation">
+
+            <a
+                href="#dashboard"
+                class="sidebar-link active"
+            >
+
+                <span class="icon">
+                    ▦
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="#tasks"
+                class="sidebar-link"
+            >
+
+                <span class="icon">
+                    ✓
+                </span>
+
+                My Tasks
+
+            </a>
+
+
+            <a
+                href="#completed"
+                class="sidebar-link"
+            >
+
+                <span class="icon">
+                    ✓
+                </span>
+
+                Completed
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-tip">
+
+                <span>
+                    💡
+                </span>
+
+                <p>
+                    Stay focused.<br>
+                    Get things done.
+                </p>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="greeting">
+                    GOOD DAY 👋
+                </p>
+
+                <h1>
+                    Let's get things done.
+                </h1>
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+                <button
+                    class="icon-button"
+                    id="themeToggle"
+                    aria-label="Toggle theme"
+                >
+                    ☼
+                </button>
+
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        JH
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>
+                            Jonathan
+                        </strong>
+
+                        <span>
+                            Developer
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             DASHBOARD
+        ================================================== -->
+
+        <section
+            id="dashboard"
+            class="dashboard"
+        >
+
+
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        ☰
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Tasks
+                        </span>
+
+                        <strong id="totalTasks">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Completed
+                        </span>
+
+                        <strong id="completedTasks">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        !
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Pending
+                        </span>
+
+                        <strong id="pendingTasks">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        %
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Progress
+                        </span>
+
+                        <strong id="progressPercent">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TASK AREA
+            ================================================== -->
+
+            <section
+                id="tasks"
+                class="task-section"
+            >
+
+
+                <div class="task-header">
+
+                    <div>
+
+                        <p class="section-label">
+                            YOUR WORK
+                        </p>
+
+                        <h2>
+                            My Tasks
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        class="add-task-button"
+                        id="openTaskModal"
+                    >
+
+                        <span>
+                            +
+                        </span>
+
+                        Add Task
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SEARCH + FILTER
+                ================================================== -->
+
+                <div class="task-controls">
+
+
+                    <div class="search-box">
+
+                        <span>
+                            ⌕
+                        </span>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search tasks..."
+                        >
+
+                    </div>
+
+
+                    <select id="categoryFilter">
+
+                        <option value="all">
+                            All Categories
+                        </option>
+
+                        <option value="work">
+                            Work
+                        </option>
+
+                        <option value="personal">
+                            Personal
+                        </option>
+
+                        <option value="study">
+                            Study
+                        </option>
+
+                        <option value="other">
+                            Other
+                        </option>
+
+                    </select>
+
+
+                    <select id="priorityFilter">
+
+                        <option value="all">
+                            All Priorities
+                        </option>
+
+                        <option value="high">
+                            High Priority
+                        </option>
+
+                        <option value="medium">
+                            Medium Priority
+                        </option>
+
+                        <option value="low">
+                            Low Priority
+                        </option>
+
+                    </select>
+
+                    <select id="sortTasks">
+
+                    <option value="newest">
+                        Newest First
+                    </option>
+
+                    <option value="oldest">
+                        Oldest First
+                    </option>
+
+                    <option value="due">
+                        Due Date
+                    </option>
+
+                    <option value="priority">
+                        Priority
+                    </option>
+
+                    <option value="alphabetical">
+                        Alphabetical
+                    </option>
+
+                </select>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     TASK LIST
+                ================================================== -->
+
+                <div
+                    id="taskList"
+                    class="task-list"
+                >
+
+                    <!-- Tasks will be generated by JavaScript -->
+
+                    <div
+                        class="empty-state"
+                        id="emptyState"
+                    >
+
+                        <div class="empty-icon">
+                            ✓
+                        </div>
+
+                        <h3>
+                            No tasks yet
+                        </h3>
+
+                        <p>
+                            Add your first task to get started.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 COMPLETED SECTION
+            ================================================== -->
+
+            <section
+                id="completed"
+                class="completed-section"
+            >
+
+                <div class="completed-header">
+
+                    <div>
+
+                        <p class="section-label">
+                            PROGRESS
+                        </p>
+
+                        <h2>
+                            Productivity
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-card">
+
+                    <div class="progress-text">
+
+                        <div>
+
+                            <span>
+                                Overall completion
+                            </span>
+
+                            <strong id="progressText">
+                                0%
+                            </strong>
+
+                        </div>
+
+                        <p>
+                            Keep going — you're making progress.
+                        </p>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            id="progressFill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         ADD / EDIT TASK MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="taskModal"
+    >
+
+        <div class="modal">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <p class="section-label">
+                        TASK
+                    </p>
+
+                    <h2 id="modalTitle">
+                        Add New Task
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="close-modal"
+                    id="closeTaskModal"
+                    aria-label="Close modal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <!-- Task Form -->
+
+            <form id="taskForm">
+
+
+                <div class="form-group">
+
+                    <label for="taskTitle">
+                        Task Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="taskTitle"
+                        placeholder="e.g. Finish portfolio"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="taskDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="taskDescription"
+                        rows="3"
+                        placeholder="Add some details..."
+                    ></textarea>
+
+                </div>
+
+
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="taskCategory">
+                            Category
+                        </label>
+
+                        <select id="taskCategory">
+
+                            <option value="work">
+                                Work
+                            </option>
+
+                            <option value="personal">
+                                Personal
+                            </option>
+
+                            <option value="study">
+                                Study
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="taskPriority">
+                            Priority
+                        </label>
+
+                        <select id="taskPriority">
+
+                            <option value="high">
+                                High
+                            </option>
+
+                            <option value="medium" selected>
+                                Medium
+                            </option>
+
+                            <option value="low">
+                                Low
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="taskDueDate">
+                        Due Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="taskDueDate"
+                    >
+
+                </div>
+
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="cancel-button"
+                        id="cancelTask"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="save-button"
+                    >
+                        Save Task
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TaskFlow JavaScript -->
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
