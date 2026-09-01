@@ -41,17 +41,19 @@ button {
 
 :root {
 
-    --background: #090a0c;
-    --surface: #101216;
-    --surface-light: #15181d;
+    --background: #0B0B09;
+    --surface: #141410;
+    --surface-light: #1C1C16;
 
-    --text: #f4f4f0;
-    --text-muted: #9b9ea5;
+    --text: #F5F1E8;
+    --text-muted: #A9A398;
 
-    --border: #25282e;
+    --border: #302F27;
 
-    --accent: #b9ff4a;
-    --accent-purple: #7c5cff;
+    --accent: #7A8450;
+    --accent-dark: #5F683C;
+
+    --beige: #D8CEBA;
 
     --font-heading: "Space Grotesk", sans-serif;
     --font-body: "Inter", sans-serif;
